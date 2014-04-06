@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>D3.js Barcamp Talk</title>
+  </head>
+  <body>
+    <script>
+        /* Lesson 4: Making bars!  */
+
+        var dataset = [];
+        for (var i = 0; i < 25; i++) {
+          var newNumber = Math.random() * 30; dataset.push(newNumber);
+        }
+
+        d3.select("body").selectAll("div")
+          .data(dataset)
+          .enter()
+          .append("div")
+          .attr("class", "bar")
+          .style("height", function(d) {
+            return d * 5 + "px";
+          });
+
+    </script>
+  </body>
+</html>

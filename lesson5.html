@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>D3.js Barcamp Talk</title>
+  </head>
+  <body>
+    <script>
+        /* Lesson 5: Histogram and SVG */
+        var dataset = [];
+        for (var i = 0; i < 25; i++) {
+          var newNumber = Math.random() * 30; dataset.push(newNumber);
+        }
+
+        var w = 500;
+        var h = 200;
+        var barPadding = 1; // <-- New!
+
+         //Create SVG element
+        var svg = d3.select("body") .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+
+        svg.selectAll("rect")
+          .data(dataset)
+          .enter()
+          .append("rect")
+          .attr("x", function(d, i) {
+            return i * (w / dataset.length);
+          })
+          .attr("y", function(d) {
+            return h - (d * 4); //Height minus data value
+          })
+          //.attr("width", 20)
+          .attr("width", w / dataset.length - barPadding)
+          .attr("height", function(d) {
+            return d * 4; //Just the data value
+          })
+          .attr("fill", function(d) {
+              if (d > 25) {
+                return 'red';
+              } else {
+                return 'teal';
+              }
+          });
+    </script>
+  </body>
+</html>
